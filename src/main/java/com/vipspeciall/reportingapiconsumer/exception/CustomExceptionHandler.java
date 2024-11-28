@@ -1,12 +1,11 @@
-package com.vipspeciall.reportingapiconsumer.expection;
+package com.vipspeciall.reportingapiconsumer.exception;
 
 import com.vipspeciall.reportingapiconsumer.dto.ErrorResponse;
-import feign.FeignException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.client.HttpServerErrorException;
 
 @RestControllerAdvice
 public class CustomExceptionHandler {
@@ -15,6 +14,18 @@ public class CustomExceptionHandler {
     public ResponseEntity<ErrorResponse> handleTokenExpired(TokenExpiredException ex) {
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .body(new ErrorResponse(0, "DECLINED", "Token Expired"));
+    }
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ErrorResponse> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        String errorMessage = ex.getBindingResult().getAllErrors().get(0).getDefaultMessage();
+        ErrorResponse errorResponse = new ErrorResponse(1,"VALIDATION_ERROR", errorMessage);
+        return ResponseEntity.badRequest().body(errorResponse);
+    }
+
+    @ExceptionHandler(ExternalApiException.class)
+    public ResponseEntity<ErrorResponse> handleExternalApiException(ExternalApiException ex) {
+        ErrorResponse errorResponse = new ErrorResponse(1,"EXTERNAL_API_ERROR", ex.getMessage());
+        return ResponseEntity.status(HttpStatus.BAD_GATEWAY).body(errorResponse); // 502 Bad Gateway
     }
 
     @ExceptionHandler(InvalidCredentialsException.class)

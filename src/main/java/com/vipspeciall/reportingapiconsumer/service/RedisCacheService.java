@@ -33,8 +33,4 @@ public class RedisCacheService {
         return redisTemplate.opsForValue().get(uniqueId);
     }
 
-    // Token'ı Redis'ten sil
-    public void deleteToken(String uniqueId) {
-        redisTemplate.delete(uniqueId);
-    }
 }

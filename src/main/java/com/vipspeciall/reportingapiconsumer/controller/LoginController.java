@@ -3,6 +3,7 @@ package com.vipspeciall.reportingapiconsumer.controller;
 import com.vipspeciall.reportingapiconsumer.dto.LoginRequest;
 import com.vipspeciall.reportingapiconsumer.dto.LoginResponse;
 import com.vipspeciall.reportingapiconsumer.service.LoginService;
+import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +19,7 @@ public class LoginController {
 
 
     @PostMapping("/login")
-    public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<LoginResponse> login(@Valid @RequestBody LoginRequest request) {
         LoginResponse loginResponse = loginService.login(request);
         return ResponseEntity.ok(loginResponse);
     }

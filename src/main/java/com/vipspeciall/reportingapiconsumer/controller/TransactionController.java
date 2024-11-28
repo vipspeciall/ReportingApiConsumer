@@ -5,6 +5,7 @@ import com.vipspeciall.reportingapiconsumer.dto.TransactionListResponse;
 import com.vipspeciall.reportingapiconsumer.dto.TransactionReportRequest;
 import com.vipspeciall.reportingapiconsumer.dto.TransactionReportResponse;
 import com.vipspeciall.reportingapiconsumer.service.TransactionService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,7 +19,7 @@ public class TransactionController {
     }
 
     @PostMapping("/report")
-    public TransactionReportResponse getTransactionReport(@RequestBody TransactionReportRequest transactionReportRequest) {
+    public TransactionReportResponse getTransactionReport(@Valid @RequestBody TransactionReportRequest transactionReportRequest) {
 
         return transactionService.getTransactionReport(transactionReportRequest);
 

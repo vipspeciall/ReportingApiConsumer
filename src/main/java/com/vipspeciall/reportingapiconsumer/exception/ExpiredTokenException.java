@@ -1,4 +1,4 @@
-package com.vipspeciall.reportingapiconsumer.expection;
+package com.vipspeciall.reportingapiconsumer.exception;
 
 public class ExpiredTokenException extends RuntimeException {
     public ExpiredTokenException(String message) {

@@ -1,9 +1,8 @@
 package com.vipspeciall.reportingapiconsumer.service;
 
-import com.vipspeciall.reportingapiconsumer.dto.LoginRequest;
 import com.vipspeciall.reportingapiconsumer.dto.LoginResponse;
 import com.vipspeciall.reportingapiconsumer.entity.UserCredentials;
-import com.vipspeciall.reportingapiconsumer.expection.TokenNotFoundException;
+import com.vipspeciall.reportingapiconsumer.exception.TokenNotFoundException;
 import com.vipspeciall.reportingapiconsumer.repository.UserCredentialsRepository;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +32,7 @@ public class TokenService {
         return token;
     }
 
-    public void handleTokenExpiration(String uniqueId) {
+    /*public void handleTokenExpiration(String uniqueId) {
         // Redis'teki token'i sil
         redisCacheService.deleteToken(uniqueId);
 
@@ -54,5 +53,5 @@ public class TokenService {
         redisCacheService.saveToken(uniqueId, response.getToken());
 
         return response.getToken();
-    }
+    }*/
 }

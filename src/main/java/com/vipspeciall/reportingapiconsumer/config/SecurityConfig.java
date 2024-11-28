@@ -15,8 +15,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())  // CSRF'yi devre dışı bırak
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/**").permitAll() // Login ve açık endpointler
-                        .anyRequest().authenticated() // Diğer tüm endpoint'ler yetki ister
+                        .anyRequest().permitAll() // Diğer tüm endpoint'ler yetki ister
                 )
                 .httpBasic(Customizer.withDefaults()); // Temel kimlik doğrulama
 

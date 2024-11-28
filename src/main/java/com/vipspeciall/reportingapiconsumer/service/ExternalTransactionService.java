@@ -2,7 +2,6 @@ package com.vipspeciall.reportingapiconsumer.service;
 
 import com.vipspeciall.reportingapiconsumer.dto.TransactionListResponse;
 import com.vipspeciall.reportingapiconsumer.dto.TransactionReportResponse;
-import com.vipspeciall.reportingapiconsumer.enums.*;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
