@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar target/reportingapiconsumer.jar
+web: java -Dserver.port=$PORT -jar target/reporting-api-consumer-0.0.1-SNAPSHOT.jar
